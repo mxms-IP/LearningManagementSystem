@@ -17,7 +17,8 @@ export const getAllCourses = async (req, res) => {
 export const getCourseId = async (req, res) => {
   const { id } = req.params;
   try {
-    const courseData = await Course.findById(id).populate({ path: "educator" });
+    // Make sure it has .populate
+const courseData = await Course.findById(id).populate({ path: "educator" });
 
     // Remove lectureUrl if isPreviewFree is false
     courseData.courseContent.forEach((chapter) => {

@@ -14,12 +14,12 @@ const createUser = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
 
-    // Replace these with YOUR actual details
+    
     const userData = {
-      _id: 'user_37LF1nvNixwJAH8qsa28x52kqww',  // Get from window.Clerk.user.id
+      _id: 'user_37Mv3b4JcdiQi8kXzogwDu04VQR',  
       email: 'oreodcms00@gmail.com',
-      name: 'Oreo',
-      imageUrl: 'https://via.placeholder.com/150',
+      name: 'Oreodcms',
+      imageUrl: 'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18zN012M2hZSURwWjdVajFzU3lMcmM4N2NFcW0ifQ?width=160',
       enrolledCourses: []
     };
 
