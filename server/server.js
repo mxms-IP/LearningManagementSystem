@@ -30,14 +30,18 @@ const startServer = async () => {
 
 startServer().catch(console.error);
 
-// CORS - Must be AFTER app initialization, BEFORE routes
 app.use(cors({
-  origin: [
-    'https://skill-bridge-lms-frontend.vercel.app',
-    'http://localhost:5173'
-  ],
-  credentials: true
+  origin: true, // Allow all origins temporarily
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Handle preflight requests
+app.options('*', cors());
+
+// Trust Vercel proxy
+app.set('trust proxy', 1);
 
 // Middlewares
 app.use(express.json());
