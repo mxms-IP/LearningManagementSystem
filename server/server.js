@@ -25,6 +25,16 @@ import { clerkMiddleware } from "@clerk/express";
 import connectCloudinary from "./configs/cloudinary.js";
 import courseRouter from "./routes/courseRoute.js";
 import userRouter from "./routes/userRoutes.js";
+import cors from 'cors';
+
+
+app.use(cors({
+  origin: [
+    'https://skillbridge-lms-henna.vercel.app',
+    'http://localhost:5173' 
+  ],
+  credentials: true
+}));
 
 
 // Initialize Express
