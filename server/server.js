@@ -20,9 +20,15 @@ dotenv.config({ path: resolve(__dirname, '.env') });
 // Initialize Express FIRST
 const app = express();
 
-// Connect to databases
-await connectDB();
-await connectCloudinary();
+const startServer = async () => {
+  await connectDB();
+  await connectCloudinary();
+  
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server on ${PORT}`));
+};
+
+startServer().catch(console.error);
 
 // CORS - Must be AFTER app initialization, BEFORE routes
 app.use(cors({
