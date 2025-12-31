@@ -151,8 +151,8 @@ export const purchaseCourse = async (req, res) => {
     ];
 
     const session = await stripeInstance.checkout.sessions.create({
-      success_url: `${origin}/payment-success`, 
-      cancel_url: `${origin}/`,
+      success_url: `${origin}/payment-success?session_id={CHECKOUT_SESSION_ID}&purchase_id=${newPurchase._id.toString()}`, 
+      cancel_url: `${origin}/course-list`,
       line_items: line_items,
       mode: "payment",
       metadata: {
@@ -234,6 +234,8 @@ export const completePurchase = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
 
 
 export const checkPurchaseStatus = async (req, res) => {
@@ -344,4 +346,43 @@ export const addUserRating = async (req, res) => {
   } catch (error) {
     return res.json({ success: false, message: error.message });
   }
+
 };
+
+export const becomeEducator = async (req, res) => {
+  try {
+    const userId = req.auth.userId;
+
+    if (!userId) {
+      return res.json({ success: false, message: "Not authenticated" });
+    }
+
+    // Update user's role in Clerk
+    await clerkClient.users.updateUser(userId, {
+      publicMetadata: {
+        role: "educator"
+      }
+    });
+
+    res.json({ 
+      success: true, 
+      message: "You are now an educator!" 
+    });
+
+  } catch (error) {
+    console.error("Become educator error:", error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+

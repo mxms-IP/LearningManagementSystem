@@ -27,4 +27,8 @@ userRouter.post("/sync", syncUserToDatabase);
 userRouter.post("/update", updateUserData);
 userRouter.post("/complete-purchase", completePurchase);
 userRouter.post("/check-purchase-status", checkPurchaseStatus);
+
+import { becomeEducator } from "../controllers/userController.js";
+userRouter.post("/become-educator", becomeEducator);
+
 export default userRouter;

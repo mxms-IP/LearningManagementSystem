@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addCourse,
+  editCourse,
   educatorDashboard,
   getEducatorCourses,
   getEnrolledStudentsData,
@@ -26,5 +27,7 @@ educatorRouter.get(
   protectEducator,
   getEnrolledStudentsData
 );
+
+educatorRouter.post("/edit-course/:id", upload.single("image"), editCourse);
 
 export default educatorRouter;

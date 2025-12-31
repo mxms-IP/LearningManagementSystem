@@ -132,3 +132,31 @@ export const getEnrolledStudentsData = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+
+export const editCourse = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { courseData } = req.body;
+    const parsedData = JSON.parse(courseData);
+    
+    const updateData = {
+      courseTitle: parsedData.courseTitle,
+      courseDescription: parsedData.courseDescription,
+      coursePrice: parsedData.coursePrice,
+      discount: parsedData.discount,
+      courseContent: parsedData.courseContent,
+    };
+
+    if (req.file) {
+      // Upload new image to Cloudinary if provided
+      const imageUpload = await cloudinary.uploader.upload(req.file.path);
+      updateData.courseThumbnail = imageUpload.secure_url;
+    }
+
+    const course = await Course.findByIdAndUpdate(id, updateData, { new: true });
+    res.json({ success: true, message: "Course updated!", course });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};

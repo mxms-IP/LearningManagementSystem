@@ -7,9 +7,11 @@ import { toast } from "react-toastify";
 
 export const AppContext = createContext();
 
+
+
 export const AppContextProvider = (props) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
+  console.log(backendUrl)
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
 
@@ -20,7 +22,25 @@ export const AppContextProvider = (props) => {
   const [isEducator, setIsEducator] = useState(false);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   const [userData, setUserData] = useState(null);
+  
+  const syncUserOnLogin = async () => {
+    try {
+      const token = await getToken();
+      const response = await axios.post(
+        backendUrl + "/api/user/sync",
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      if (response.data.success) {
+        console.log("✅ User synced to database");
+      }
+    } catch (error) {
+      console.error("❌ User sync error:", error);
 
+    }
+  };
+  
   // Fetch All Courses
   const fetchAllCourses = async () => {
     try {
@@ -125,6 +145,7 @@ export const AppContextProvider = (props) => {
 
   useEffect(() => {
     if (user) {
+      syncUserOnLogin();  
       fetchUserData();
       fetchUserEnrolledCourses();
     }
