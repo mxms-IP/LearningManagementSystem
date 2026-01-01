@@ -6,7 +6,7 @@ import CourseDetails from "./pages/student/CourseDetails";
 import MyEnrollments from "./pages/student/MyEnrollments";
 import Player from "./pages/student/Player";
 import Loading from "./components/student/Loading";
-import PaymentSuccess from "./components/student/PaymentSuccess";
+import PaymentSuccess from "./pages/student/PaymentSuccess";
 import Educator from "./pages/educator/Educator";
 import Dashboard from "./pages/educator/Dashboard";
 import AddCourse from "./pages/educator/AddCourse";
