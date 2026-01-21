@@ -3,8 +3,10 @@
 A full-stack Learning Management System (LMS) built with the MERN stack, featuring course management, payment processing, and real-time progress tracking.
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://skill-bridge-lms-frontend.vercel.app)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![alt text](screenshots/homepage.jpeg)
+
+
+<img src="screenshots/homepage.png" alt="Homepage" width="700">
+
 
 
 ## 🚀 Features
