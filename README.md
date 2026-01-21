@@ -5,7 +5,7 @@ A full-stack Learning Management System (LMS) built with the MERN stack, featuri
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://skill-bridge-lms-frontend.vercel.app)
 
 
-<img src="screenshots/homepage.png" alt="Homepage" width="300">
+<img src="screenshots/homepage.png" alt="Homepage">
 
 
 
